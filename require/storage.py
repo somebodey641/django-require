@@ -92,7 +92,7 @@ class OptimizedFilesMixin(object):
                 with closing(storage.open(path, "rb")) as src_handle:
                     with open(dst_path, "wb") as dst_handle:
                         for block in self._file_iter(src_handle):
-                            hash.update(block)
+                            hash.update(block.encode('utf-8'))
                             dst_handle.write(block)
                 # Store details of file.
                 compile_info[name] = hash.digest()
